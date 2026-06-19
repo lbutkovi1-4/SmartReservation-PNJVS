@@ -1,6 +1,6 @@
-# SmartTable-PNJVS
+# SmartReservation-PNJVS
 ## Opis projekta
-SmartTable je web aplikacija za upravljanje rezervacijama stolova u restoranu
+SmartReservation je web aplikacija za upravljanje rezervacijama stolova u restoranu
 ## Tehnologije
 -Java
 -Spring Boot
@@ -8,14 +8,13 @@ SmartTable je web aplikacija za upravljanje rezervacijama stolova u restoranu
 -MySQL
 ## Funkcionalnosti
 ### Korisnik
--Datum
--Vrijeme
--Broj osoba
+-Datum rezervacije
+-Vrijeme rezervacije
+-Unos broja osoba
 -Kreiranje rezervacije
 ### Administrator
--Dodavanje stolu
--Uređivanje stolova
--Brisanje stolova
 -Pregled svih rezervacija
+-Uređivanje rezervacije
+-Brisanje rezervacije
 ### Status projekta
 Projekt je trenutno u fazi planiranja. 
