@@ -8,13 +8,19 @@ SmartReservation je web aplikacija za upravljanje rezervacijama stolova u restor
 -MySQL
 ## Funkcionalnosti
 ### Korisnik
--Datum rezervacije
--Vrijeme rezervacije
--Unos broja osoba
+-Unos imena i prezimena
+-Unos broja mobitela
+-Odabir datuma rezervacije
+-Odabir vremena rezervacije
+-Odabir broja osoba
+-Odabir stola
 -Kreiranje rezervacije
 ### Administrator
 -Pregled svih rezervacija
--Uređivanje rezervacije
--Brisanje rezervacije
+-Uređivanje rezervacija
+-Brisanje rezervacija
+-Dodavanje stolova
+-Uređivanje stolova
+-Brisanje stolova
 ### Status projekta
 Projekt je trenutno u fazi planiranja. 
