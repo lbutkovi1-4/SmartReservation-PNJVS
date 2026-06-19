@@ -24,3 +24,5 @@ SmartReservation je web aplikacija za upravljanje rezervacijama stolova u restor
 -Brisanje stolova
 ### Status projekta
 Projekt je trenutno u fazi planiranja. 
+## Baza podataka
+ER dijagram baze podataka
