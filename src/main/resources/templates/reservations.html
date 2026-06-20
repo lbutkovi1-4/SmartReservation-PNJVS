@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Popis rezervacija</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<h1>Popis rezervacija</h1>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Gost</th>
+        <th>Stol</th>
+        <th>Datum</th>
+        <th>Vrijeme</th>
+        <th>Akcija</th>
+    </tr>
+
+    <tr th:each="reservation : ${reservations}">
+        <td th:text="${reservation.id}"></td>
+        <td th:text="${reservation.customerName}"></td>
+        <td th:text="${reservation.tableNumber}"></td>
+        <td th:text="${reservation.reservationDate}"></td>
+        <td th:text="${reservation.reservationTime}"></td>
+        <td>
+            <a th:href="@{/delete/{id}(id=${reservation.id})}">
+                Obriši
+            </a>
+        </td>
+    </tr>
+
+</table>
+
+<br>
+
+<a href="/reservation">Nova rezervacija</a>
+
+</body>
+</html>
+
