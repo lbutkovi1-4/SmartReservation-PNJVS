@@ -1,9 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>SmartReservation</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<h1>SmartReservation radi!</h1>
+
+<nav class="navbar">
+    <a class="brand" href="/">SmartReservation</a>
+    <div class="nav-links">
+        <a href="/reservations">Rezervacije</a>
+        <a href="/reservation">Nova rezervacija</a>
+    </div>
+</nav>
+
+<div class="page">
+    <div class="hero">
+        <h1>Dobrodošli u SmartReservation</h1>
+        <p>Jednostavno upravljanje rezervacijama stolova u restoranu.</p>
+        <div class="hero-actions">
+            <a class="btn" href="/reservation">+ Nova rezervacija</a>
+            <a class="btn btn-secondary" href="/reservations">Pregledaj rezervacije</a>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

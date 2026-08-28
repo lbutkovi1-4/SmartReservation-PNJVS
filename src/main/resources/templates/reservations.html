@@ -1,47 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Popis rezervacija</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<h1>Popis rezervacija</h1>
+<nav class="navbar">
+    <a class="brand" href="/">SmartReservation</a>
+    <div class="nav-links">
+        <a href="/reservations">Rezervacije</a>
+        <a href="/reservation">Nova rezervacija</a>
+    </div>
+</nav>
 
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Gost</th>
-        <th>Stol</th>
-        <th>Datum</th>
-        <th>Vrijeme</th>
-        <th>Akcija</th>
-    </tr>
+<div class="page">
+    <div class="page-header">
+        <div>
+            <h1>Popis rezervacija</h1>
+            <p class="subtitle" style="margin-bottom: 0;">Pregled svih trenutnih rezervacija stolova.</p>
+        </div>
+        <a class="btn" href="/reservation">+ Nova rezervacija</a>
+    </div>
 
-    <tr th:each="reservation : ${reservations}">
-        <td th:text="${reservation.id}"></td>
-        <td th:text="${reservation.customerName}"></td>
-        <td th:text="${reservation.tableNumber}"></td>
-        <td th:text="${reservation.reservationDate}"></td>
-        <td th:text="${reservation.reservationTime}"></td>
-        <td>
-            <a th:href="@{/edit/{id}(id=${reservation.id})}">
-                Uredi
-            </a>
-            &nbsp;|&nbsp;
-            <a th:href="@{/delete/{id}(id=${reservation.id})}"
-               onclick="return confirm('Sigurno želite obrisati ovu rezervaciju?');">
-                Obriši
-            </a>
-        </td>
-    </tr>
+    <div class="table-wrapper" th:if="${not #lists.isEmpty(reservations)}">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Gost</th>
+                <th>Stol</th>
+                <th>Datum</th>
+                <th>Vrijeme</th>
+                <th>Akcija</th>
+            </tr>
 
-</table>
+            <tr th:each="reservation : ${reservations}">
+                <td><span class="badge" th:text="'#' + ${reservation.id}"></span></td>
+                <td th:text="${reservation.customerName}"></td>
+                <td th:text="${reservation.tableNumber}"></td>
+                <td th:text="${reservation.reservationDate}"></td>
+                <td th:text="${reservation.reservationTime}"></td>
+                <td class="actions">
+                    <a class="edit-link" th:href="@{/edit/{id}(id=${reservation.id})}">Uredi</a>
+                    <span class="actions-separator">|</span>
+                    <a class="delete-link" th:href="@{/delete/{id}(id=${reservation.id})}"
+                       onclick="return confirm('Sigurno želite obrisati ovu rezervaciju?');">Obriši</a>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-<br>
-
-<a href="/reservation">Nova rezervacija</a>
+    <div class="table-wrapper empty-state" th:if="${#lists.isEmpty(reservations)}">
+        <p>Trenutno nema unesenih rezervacija.</p>
+        <a class="btn" href="/reservation">Dodaj prvu rezervaciju</a>
+    </div>
+</div>
 
 </body>
 </html>
-

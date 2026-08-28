@@ -1,41 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title th:text="${reservation.id} != null ? 'Uredi rezervaciju' : 'Nova rezervacija'">Nova rezervacija</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<h1 th:text="${reservation.id} != null ? 'Uredi rezervaciju' : 'Nova rezervacija'">Nova rezervacija</h1>
+<nav class="navbar">
+    <a class="brand" href="/">SmartReservation</a>
+    <div class="nav-links">
+        <a href="/reservations">Rezervacije</a>
+        <a href="/reservation">Nova rezervacija</a>
+    </div>
+</nav>
 
-<form th:action="@{/saveReservation}" th:object="${reservation}" method="post">
+<div class="page">
+    <h1 th:text="${reservation.id} != null ? 'Uredi rezervaciju' : 'Nova rezervacija'">Nova rezervacija</h1>
+    <p class="subtitle" th:text="${reservation.id} != null ? 'Ažurirajte podatke o postojećoj rezervaciji.' : 'Unesite podatke za novu rezervaciju stola.'">
+        Unesite podatke za novu rezervaciju stola.
+    </p>
 
-    <!-- Skriveno polje: ako id postoji (edit), Spring Data JPA će raditi UPDATE umjesto INSERT-a -->
-    <input type="hidden" th:field="*{id}">
+    <div class="card">
+        <form th:action="@{/saveReservation}" th:object="${reservation}" method="post">
 
-    <label>Ime gosta:</label>
-    <input type="text" th:field="*{customerName}">
-    <span class="error" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></span>
-    <br><br>
+            <input type="hidden" th:field="*{id}">
 
-    <label>Broj stola:</label>
-    <input type="number" th:field="*{tableNumber}">
-    <span class="error" th:if="${#fields.hasErrors('tableNumber')}" th:errors="*{tableNumber}"></span>
-    <br><br>
+            <div class="form-group">
+                <label>Ime gosta</label>
+                <input type="text" th:field="*{customerName}" placeholder="npr. Ana Anić">
+                <span class="error" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></span>
+            </div>
 
-    <label>Datum:</label>
-    <input type="date" th:field="*{reservationDate}">
-    <span class="error" th:if="${#fields.hasErrors('reservationDate')}" th:errors="*{reservationDate}"></span>
-    <br><br>
+            <div class="form-group">
+                <label>Broj stola</label>
+                <input type="number" th:field="*{tableNumber}" placeholder="npr. 4">
+                <span class="error" th:if="${#fields.hasErrors('tableNumber')}" th:errors="*{tableNumber}"></span>
+            </div>
 
-    <label>Vrijeme:</label>
-    <input type="time" th:field="*{reservationTime}">
-    <span class="error" th:if="${#fields.hasErrors('reservationTime')}" th:errors="*{reservationTime}"></span>
-    <br><br>
+            <div class="form-group">
+                <label>Datum</label>
+                <input type="date" th:field="*{reservationDate}">
+                <span class="error" th:if="${#fields.hasErrors('reservationDate')}" th:errors="*{reservationDate}"></span>
+            </div>
 
-    <button type="submit" th:text="${reservation.id} != null ? 'Spremi izmjene' : 'Spremi rezervaciju'">Spremi rezervaciju</button>
+            <div class="form-group">
+                <label>Vrijeme</label>
+                <input type="time" th:field="*{reservationTime}">
+                <span class="error" th:if="${#fields.hasErrors('reservationTime')}" th:errors="*{reservationTime}"></span>
+            </div>
 
-</form>
+            <div class="form-actions">
+                <button type="submit" class="btn" th:text="${reservation.id} != null ? 'Spremi izmjene' : 'Spremi rezervaciju'">Spremi rezervaciju</button>
+                <a class="btn btn-secondary" href="/reservations">Odustani</a>
+            </div>
+
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
