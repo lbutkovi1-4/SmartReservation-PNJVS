@@ -1,6 +1,10 @@
 package hr.unipu.smartreservation.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,12 +16,17 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Ime gosta je obavezno")
     private String customerName;
 
+    @Min(value = 1, message = "Broj stola mora biti veći od 0")
     private int tableNumber;
 
+    @NotNull(message = "Datum je obavezan")
+    @FutureOrPresent(message = "Datum ne može biti u prošlosti")
     private LocalDate reservationDate;
 
+    @NotNull(message = "Vrijeme je obavezno")
     private LocalTime reservationTime;
 
     public Reservation() {
@@ -25,6 +34,10 @@ public class Reservation {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCustomerName() {

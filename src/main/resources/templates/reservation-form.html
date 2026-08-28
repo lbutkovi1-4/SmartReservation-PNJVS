@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Nova rezervacija</title>
+    <title th:text="${reservation.id} != null ? 'Uredi rezervaciju' : 'Nova rezervacija'">Nova rezervacija</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<h1>Nova rezervacija</h1>
+<h1 th:text="${reservation.id} != null ? 'Uredi rezervaciju' : 'Nova rezervacija'">Nova rezervacija</h1>
 
 <form th:action="@{/saveReservation}" th:object="${reservation}" method="post">
 
+    <!-- Skriveno polje: ako id postoji (edit), Spring Data JPA će raditi UPDATE umjesto INSERT-a -->
+    <input type="hidden" th:field="*{id}">
+
     <label>Ime gosta:</label>
     <input type="text" th:field="*{customerName}">
+    <span class="error" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></span>
     <br><br>
 
     <label>Broj stola:</label>
     <input type="number" th:field="*{tableNumber}">
+    <span class="error" th:if="${#fields.hasErrors('tableNumber')}" th:errors="*{tableNumber}"></span>
     <br><br>
 
     <label>Datum:</label>
     <input type="date" th:field="*{reservationDate}">
+    <span class="error" th:if="${#fields.hasErrors('reservationDate')}" th:errors="*{reservationDate}"></span>
     <br><br>
 
     <label>Vrijeme:</label>
     <input type="time" th:field="*{reservationTime}">
+    <span class="error" th:if="${#fields.hasErrors('reservationTime')}" th:errors="*{reservationTime}"></span>
     <br><br>
 
-    <button type="submit">Spremi rezervaciju</button>
+    <button type="submit" th:text="${reservation.id} != null ? 'Spremi izmjene' : 'Spremi rezervaciju'">Spremi rezervaciju</button>
 
 </form>
 

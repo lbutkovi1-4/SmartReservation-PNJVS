@@ -25,7 +25,12 @@
         <td th:text="${reservation.reservationDate}"></td>
         <td th:text="${reservation.reservationTime}"></td>
         <td>
-            <a th:href="@{/delete/{id}(id=${reservation.id})}">
+            <a th:href="@{/edit/{id}(id=${reservation.id})}">
+                Uredi
+            </a>
+            &nbsp;|&nbsp;
+            <a th:href="@{/delete/{id}(id=${reservation.id})}"
+               onclick="return confirm('Sigurno želite obrisati ovu rezervaciju?');">
                 Obriši
             </a>
         </td>

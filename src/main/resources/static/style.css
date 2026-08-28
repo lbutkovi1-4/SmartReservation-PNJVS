@@ -40,3 +40,11 @@ input {
     padding: 8px;
     margin-bottom: 10px;
 }
+
+.error {
+    color: #c0392b;
+    font-size: 0.9em;
+    display: block;
+    margin-top: -8px;
+    margin-bottom: 8px;
+}
